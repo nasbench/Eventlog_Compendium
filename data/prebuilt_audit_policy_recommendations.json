@@ -1,0 +1,476 @@
+{
+    "ANSSI (Domain Controller)": {
+        "Account Logon": {
+            "Credential Validation": "Failure",
+            "Kerberos Authentication Service": "Success, Failure",
+            "Kerberos Service Ticket Operations": "Success, Failure",
+            "Other Account Logon Events": "This auditing subcategory does not contain any events. It is intended for future use."
+        },
+        "Account Management": {
+            "Application Group Management": "N/A",
+            "Computer Account Management": "Success, Failure",
+            "Distribution Group Management": "N/A",
+            "Other Account Management Events": "Success, Failure",
+            "Security Group Management": "Success, Failure",
+            "User Account Management": "Success, Failure"
+        },
+        "Detailed Tracking": {
+            "DPAPI Activity": "Success, Failure",
+            "PNP Activity": "Success",
+            "Process Creation": "Success, Failure",
+            "Process Termination": "N/A",
+            "RPC Events": "N/A",
+            "Token Right Adjusted": "N/A"
+        },
+        "DS Access": {
+            "Detailed Directory Service Replication": "Success, Failure",
+            "Directory Service Access": "Success, Failure",
+            "Directory Service Changes": "Success, Failure",
+            "Directory Service Replication": "Success, Failure"
+        },
+        "Logon/Logoff": {
+            "Account Lockout": "Success, Failure",
+            "User/Device Claims": "N/A",
+            "Group Membership": "N/A",
+            "IPsec Extended Mode": "N/A",
+            "IPsec Main Mode": "N/A",
+            "IPsec Quick Mode": "N/A",
+            "Logoff": "Success",
+            "Logon": "Success, Failure",
+            "Network Policy Server": "Success, Failure",
+            "Other Logon/Logoff Events": "Success, Failure",
+            "Special Logon": "Success"
+        },
+        "Object Access": {
+            "Application Generated": "N/A",
+            "Certification Services": "Success, Failure",
+            "Detailed File Share": "Success",
+            "File Share": "Success, Failure",
+            "File System": "Failure",
+            "Filtering Platform Connection": "Failure",
+            "Filtering Platform Packet Drop": "N/A",
+            "Handle Manipulation": "N/A",
+            "Kernel Object": "N/A",
+            "Other Object Access Events": "Success, Failure",
+            "Registry": "N/A",
+            "Removable Storage": "Success, Failure",
+            "SAM": "N/A",
+            "Central Access Policy Staging": "N/A"
+        },
+        "Policy Change": {
+            "Audit Policy Change": "Success, Failure",
+            "Authentication Policy Change": "Success, Failure",
+            "Authorization Policy Change": "Success, Failure",
+            "Filtering Platform Policy Change": "Success, Failure",
+            "MPSSVC Rule-Level Policy Change": "Failure",
+            "Other Policy Change Events": "N/A"
+        },
+        "Privilege Use": {
+            "Non Sensitive Privilege Use": "N/A",
+            "Other Privilege Use Events": "Success, Failure",
+            "Sensitive Privilege Use": "N/A"
+        },
+        "System": {
+            "IPsec Driver": "Success, Failure",
+            "Other System Events": "Success, Failure",
+            "Security State Change": "Failure",
+            "Security System Extension": "Success, Failure",
+            "System Integrity": "N/A"
+        }
+    },
+    "ANSSI": {
+        "Account Logon": {
+            "Credential Validation": "Success, Failure",
+            "Kerberos Authentication Service": "Success, Failure",
+            "Kerberos Service Ticket Operations": "Success, Failure",
+            "Other Account Logon Events": "This auditing subcategory does not contain any events. It is intended for future use."
+        },
+        "Account Management": {
+            "Application Group Management": "N/A",
+            "Computer Account Management": "Success, Failure",
+            "Distribution Group Management": "N/A",
+            "Other Account Management Events": "Success, Failure",
+            "Security Group Management": "Success, Failure",
+            "User Account Management": "Success, Failure"
+        },
+        "Detailed Tracking": {
+            "DPAPI Activity": "Success, Failure",
+            "PNP Activity": "Success",
+            "Process Creation": "Success, Failure",
+            "Process Termination": "N/A",
+            "RPC Events": "N/A",
+            "Token Right Adjusted": "N/A"
+        },
+        "DS Access": {
+            "Detailed Directory Service Replication": "Success, Failure",
+            "Directory Service Access": "Success, Failure",
+            "Directory Service Changes": "Success, Failure",
+            "Directory Service Replication": "Success, Failure"
+        },
+        "Logon/Logoff": {
+            "Account Lockout": "Success, Failure",
+            "User/Device Claims": "N/A",
+            "Group Membership": "N/A",
+            "IPsec Extended Mode": "N/A",
+            "IPsec Main Mode": "N/A",
+            "IPsec Quick Mode": "N/A",
+            "Logoff": "Success",
+            "Logon": "Success, Failure",
+            "Network Policy Server": "Success, Failure",
+            "Other Logon/Logoff Events": "Success, Failure",
+            "Special Logon": "Success"
+        },
+        "Object Access": {
+            "Application Generated": "N/A",
+            "Certification Services": "Success, Failure",
+            "Detailed File Share": "Success",
+            "File Share": "Success, Failure",
+            "File System": "Failure",
+            "Filtering Platform Connection": "Failure",
+            "Filtering Platform Packet Drop": "N/A",
+            "Handle Manipulation": "N/A",
+            "Kernel Object": "N/A",
+            "Other Object Access Events": "Success, Failure",
+            "Registry": "N/A",
+            "Removable Storage": "Success, Failure",
+            "SAM": "N/A",
+            "Central Access Policy Staging": "N/A"
+        },
+        "Policy Change": {
+            "Audit Policy Change": "Success, Failure",
+            "Authentication Policy Change": "Success, Failure",
+            "Authorization Policy Change": "Success, Failure",
+            "Filtering Platform Policy Change": "Success, Failure",
+            "MPSSVC Rule-Level Policy Change": "Failure",
+            "Other Policy Change Events": "N/A"
+        },
+        "Privilege Use": {
+            "Non Sensitive Privilege Use": "N/A",
+            "Other Privilege Use Events": "Success, Failure",
+            "Sensitive Privilege Use": "N/A"
+        },
+        "System": {
+            "IPsec Driver": "Success, Failure",
+            "Other System Events": "Success, Failure",
+            "Security State Change": "Failure",
+            "Security System Extension": "Success, Failure",
+            "System Integrity": "N/A"
+        }
+    },
+    "ADSecurity": {
+        "Account Logon": {
+            "Credential Validation": "Success, Failure",
+            "Kerberos Authentication Service": "Success, Failure",
+            "Kerberos Service Ticket Operations": "Success, Failure",
+            "Other Account Logon Events": "This auditing subcategory does not contain any events. It is intended for future use."
+        },
+        "Account Management": {
+            "Application Group Management": "N/A",
+            "Computer Account Management": "Success, Failure",
+            "Distribution Group Management": "N/A",
+            "Other Account Management Events": "Success, Failure",
+            "Security Group Management": "Success, Failure",
+            "User Account Management": "Success, Failure"
+        },
+        "Detailed Tracking": {
+            "DPAPI Activity": "Success, Failure",
+            "PNP Activity": "N/A",
+            "Process Creation": "Success, Failure",
+            "Process Termination": "N/A",
+            "RPC Events": "N/A",
+            "Token Right Adjusted": "N/A"
+        },
+        "DS Access": {
+            "Detailed Directory Service Replication": "N/A",
+            "Directory Service Access": "Success, Failure",
+            "Directory Service Changes": "Success, Failure",
+            "Directory Service Replication": "N/A"
+        },
+        "Logon/Logoff": {
+            "Account Lockout": "Success",
+            "User/Device Claims": "N/A",
+            "Group Membership": "N/A",
+            "IPsec Extended Mode": "N/A",
+            "IPsec Main Mode": "N/A",
+            "IPsec Quick Mode": "N/A",
+            "Logoff": "Success",
+            "Logon": "Success, Failure",
+            "Network Policy Server": "N/A",
+            "Other Logon/Logoff Events": "N/A",
+            "Special Logon": "Success, Failure"
+        },
+        "Object Access": {
+            "Application Generated": "N/A",
+            "Certification Services": "N/A",
+            "Detailed File Share": "N/A",
+            "File Share": "N/A",
+            "File System": "N/A",
+            "Filtering Platform Connection": "N/A",
+            "Filtering Platform Packet Drop": "N/A",
+            "Handle Manipulation": "N/A",
+            "Kernel Object": "N/A",
+            "Other Object Access Events": "N/A",
+            "Registry": "N/A",
+            "Removable Storage": "N/A",
+            "SAM": "N/A",
+            "Central Access Policy Staging": "N/A"
+        },
+        "Policy Change": {
+            "Audit Policy Change": "N/A",
+            "Authentication Policy Change": "N/A",
+            "Authorization Policy Change": "N/A",
+            "Filtering Platform Policy Change": "N/A",
+            "MPSSVC Rule-Level Policy Change": "N/A",
+            "Other Policy Change Events": "N/A"
+        },
+        "Privilege Use": {
+            "Non Sensitive Privilege Use": "N/A",
+            "Other Privilege Use Events": "N/A",
+            "Sensitive Privilege Use": "N/A"
+        },
+        "System": {
+            "IPsec Driver": "Success, Failure",
+            "Other System Events": "N/A",
+            "Security State Change": "Success, Failure",
+            "Security System Extension": "Success, Failure",
+            "System Integrity": "N/A"
+        }
+    },
+    "CIS - Windows 11 Enterprise": {
+        "Account Logon": {
+            "Credential Validation": "Success, Failure",
+            "Kerberos Authentication Service": "N/A",
+            "Kerberos Service Ticket Operations": "N/A",
+            "Other Account Logon Events": "This auditing subcategory does not contain any events. It is intended for future use."
+        },
+        "Account Management": {
+            "Application Group Management": "Success, Failure",
+            "Computer Account Management": "N/A",
+            "Distribution Group Management": "N/A",
+            "Other Account Management Events": "N/A",
+            "Security Group Management": "Success",
+            "User Account Management": "Success, Failure"
+        },
+        "Detailed Tracking": {
+            "DPAPI Activity": "N/A",
+            "PNP Activity": "Success",
+            "Process Creation": "Success",
+            "Process Termination": "N/A",
+            "RPC Events": "N/A",
+            "Token Right Adjusted": "N/A"
+        },
+        "DS Access": {
+            "Detailed Directory Service Replication": "N/A",
+            "Directory Service Access": "N/A",
+            "Directory Service Changes": "N/A",
+            "Directory Service Replication": "N/A"
+        },
+        "Logon/Logoff": {
+            "Account Lockout": "Failure",
+            "User/Device Claims": "N/A",
+            "Group Membership": "Success",
+            "IPsec Extended Mode": "N/A",
+            "IPsec Main Mode": "N/A",
+            "IPsec Quick Mode": "N/A",
+            "Logoff": "Success",
+            "Logon": "Success, Failure",
+            "Network Policy Server": "N/A",
+            "Other Logon/Logoff Events": "Success, Failure",
+            "Special Logon": "Success"
+        },
+        "Object Access": {
+            "Application Generated": "N/A",
+            "Certification Services": "N/A",
+            "Detailed File Share": "Failure",
+            "File Share": "Success, Failure",
+            "File System": "N/A",
+            "Filtering Platform Connection": "N/A",
+            "Filtering Platform Packet Drop": "N/A",
+            "Handle Manipulation": "N/A",
+            "Kernel Object": "N/A",
+            "Other Object Access Events": "Success, Failure",
+            "Registry": "N/A",
+            "Removable Storage": "Success, Failure",
+            "SAM": "N/A",
+            "Central Access Policy Staging": "N/A"
+        },
+        "Policy Change": {
+            "Audit Policy Change": "Success",
+            "Authentication Policy Change": "Success",
+            "Authorization Policy Change": "Success",
+            "Filtering Platform Policy Change": "N/A",
+            "MPSSVC Rule-Level Policy Change": "Success, Failure",
+            "Other Policy Change Events": "Failure"
+        },
+        "Privilege Use": {
+            "Non Sensitive Privilege Use": "N/A",
+            "Other Privilege Use Events": "N/A",
+            "Sensitive Privilege Use": "Success, Failure"
+        },
+        "System": {
+            "IPsec Driver": "Success, Failure",
+            "Other System Events": "Success, Failure",
+            "Security State Change": "Success",
+            "Security System Extension": "Success",
+            "System Integrity": "Success, Failure"
+        }
+    },
+    "CIS - Windows Server 2019": {
+        "Account Logon": {
+            "Credential Validation": "Success, Failure",
+            "Kerberos Authentication Service": "N/A",
+            "Kerberos Service Ticket Operations": "N/A",
+            "Other Account Logon Events": "This auditing subcategory does not contain any events. It is intended for future use."
+        },
+        "Account Management": {
+            "Application Group Management": "Success, Failure",
+            "Computer Account Management": "N/A",
+            "Distribution Group Management": "N/A",
+            "Other Account Management Events": "N/A",
+            "Security Group Management": "Success",
+            "User Account Management": "Success, Failure"
+        },
+        "Detailed Tracking": {
+            "DPAPI Activity": "N/A",
+            "PNP Activity": "Success",
+            "Process Creation": "Success",
+            "Process Termination": "N/A",
+            "RPC Events": "N/A",
+            "Token Right Adjusted": "N/A"
+        },
+        "DS Access": {
+            "Detailed Directory Service Replication": "N/A",
+            "Directory Service Access": "N/A",
+            "Directory Service Changes": "N/A",
+            "Directory Service Replication": "N/A"
+        },
+        "Logon/Logoff": {
+            "Account Lockout": "Failure",
+            "User/Device Claims": "N/A",
+            "Group Membership": "Success",
+            "IPsec Extended Mode": "N/A",
+            "IPsec Main Mode": "N/A",
+            "IPsec Quick Mode": "N/A",
+            "Logoff": "Success",
+            "Logon": "Success, Failure",
+            "Network Policy Server": "N/A",
+            "Other Logon/Logoff Events": "Success, Failure",
+            "Special Logon": "Success"
+        },
+        "Object Access": {
+            "Application Generated": "N/A",
+            "Certification Services": "N/A",
+            "Detailed File Share": "Failure",
+            "File Share": "Success, Failure",
+            "File System": "N/A",
+            "Filtering Platform Connection": "N/A",
+            "Filtering Platform Packet Drop": "N/A",
+            "Handle Manipulation": "N/A",
+            "Kernel Object": "N/A",
+            "Other Object Access Events": "Success, Failure",
+            "Registry": "N/A",
+            "Removable Storage": "Success, Failure",
+            "SAM": "N/A",
+            "Central Access Policy Staging": "N/A"
+        },
+        "Policy Change": {
+            "Audit Policy Change": "Success",
+            "Authentication Policy Change": "Success",
+            "Authorization Policy Change": "Success",
+            "Filtering Platform Policy Change": "N/A",
+            "MPSSVC Rule-Level Policy Change": "Success, Failure",
+            "Other Policy Change Events": "Failure"
+        },
+        "Privilege Use": {
+            "Non Sensitive Privilege Use": "N/A",
+            "Other Privilege Use Events": "N/A",
+            "Sensitive Privilege Use": "Success, Failure"
+        },
+        "System": {
+            "IPsec Driver": "Success, Failure",
+            "Other System Events": "Success, Failure",
+            "Security State Change": "Success",
+            "Security System Extension": "Success",
+            "System Integrity": "Success, Failure"
+        }
+    },
+    "CIS - Windows Server 2019 (Domain Controller)": {
+        "Account Logon": {
+            "Credential Validation": "Success, Failure",
+            "Kerberos Authentication Service": "Success, Failure",
+            "Kerberos Service Ticket Operations": "Success, Failure",
+            "Other Account Logon Events": "This auditing subcategory does not contain any events. It is intended for future use."
+        },
+        "Account Management": {
+            "Application Group Management": "Success, Failure",
+            "Computer Account Management": "Success",
+            "Distribution Group Management": "Success",
+            "Other Account Management Events": "Success",
+            "Security Group Management": "Success",
+            "User Account Management": "Success, Failure"
+        },
+        "Detailed Tracking": {
+            "DPAPI Activity": "N/A",
+            "PNP Activity": "Success",
+            "Process Creation": "Success",
+            "Process Termination": "N/A",
+            "RPC Events": "N/A",
+            "Token Right Adjusted": "N/A"
+        },
+        "DS Access": {
+            "Detailed Directory Service Replication": "N/A",
+            "Directory Service Access": "Failure",
+            "Directory Service Changes": "Success",
+            "Directory Service Replication": "N/A"
+        },
+        "Logon/Logoff": {
+            "Account Lockout": "Failure",
+            "User/Device Claims": "N/A",
+            "Group Membership": "Success",
+            "IPsec Extended Mode": "N/A",
+            "IPsec Main Mode": "N/A",
+            "IPsec Quick Mode": "N/A",
+            "Logoff": "Success",
+            "Logon": "Success, Failure",
+            "Network Policy Server": "N/A",
+            "Other Logon/Logoff Events": "Success, Failure",
+            "Special Logon": "Success"
+        },
+        "Object Access": {
+            "Application Generated": "N/A",
+            "Certification Services": "N/A",
+            "Detailed File Share": "Failure",
+            "File Share": "Success, Failure",
+            "File System": "N/A",
+            "Filtering Platform Connection": "N/A",
+            "Filtering Platform Packet Drop": "N/A",
+            "Handle Manipulation": "N/A",
+            "Kernel Object": "N/A",
+            "Other Object Access Events": "Success, Failure",
+            "Registry": "N/A",
+            "Removable Storage": "Success, Failure",
+            "SAM": "N/A",
+            "Central Access Policy Staging": "N/A"
+        },
+        "Policy Change": {
+            "Audit Policy Change": "Success",
+            "Authentication Policy Change": "Success",
+            "Authorization Policy Change": "Success",
+            "Filtering Platform Policy Change": "N/A",
+            "MPSSVC Rule-Level Policy Change": "Success, Failure",
+            "Other Policy Change Events": "Failure"
+        },
+        "Privilege Use": {
+            "Non Sensitive Privilege Use": "N/A",
+            "Other Privilege Use Events": "N/A",
+            "Sensitive Privilege Use": "Success, Failure"
+        },
+        "System": {
+            "IPsec Driver": "Success, Failure",
+            "Other System Events": "Success, Failure",
+            "Security State Change": "Success",
+            "Security System Extension": "Success",
+            "System Integrity": "Success, Failure"
+        }
+    }
+}

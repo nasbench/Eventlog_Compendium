@@ -1,0 +1,79 @@
+{
+    "Account Logon": {
+        "Credential Validation": "N/A",
+        "Kerberos Authentication Service": "N/A",
+        "Kerberos Service Ticket Operations": "N/A",
+        "Other Account Logon Events": "N/A"
+    },
+    "Account Management": {
+        "Application Group Management": "N/A",
+        "Computer Account Management": "N/A",
+        "Distribution Group Management": "N/A",
+        "Other Account Management Events": "N/A",
+        "Security Group Management": "N/A",
+        "User Account Management": "N/A"
+    },
+    "Detailed Tracking": {
+        "DPAPI Activity": "N/A",
+        "PNP Activity": "N/A",
+        "Process Creation": "N/A",
+        "Process Termination": "N/A",
+        "RPC Events": "N/A",
+        "Token Right Adjusted": "N/A"
+    },
+    "DS Access": {
+        "Detailed Directory Service Replication": "N/A",
+        "Directory Service Access": "N/A",
+        "Directory Service Changes": "N/A",
+        "Directory Service Replication": "N/A"
+    },
+    "Logon/Logoff": {
+        "Account Lockout": "N/A",
+        "User/Device Claims": "N/A",
+        "Group Membership": "N/A",
+        "IPsec Extended Mode": "N/A",
+        "IPsec Main Mode": "N/A",
+        "IPsec Quick Mode": "N/A",
+        "Logoff": "N/A",
+        "Logon": "N/A",
+        "Network Policy Server": "N/A",
+        "Other Logon/Logoff Events": "N/A",
+        "Special Logon": "N/A"
+    },
+    "Object Access": {
+        "Application Generated": "N/A",
+        "Certification Services": "N/A",
+        "Detailed File Share": "N/A",
+        "File Share": "N/A",
+        "File System": "N/A",
+        "Filtering Platform Connection": "N/A",
+        "Filtering Platform Packet Drop": "N/A",
+        "Handle Manipulation": "N/A",
+        "Kernel Object": "N/A",
+        "Other Object Access Events": "N/A",
+        "Registry": "N/A",
+        "Removable Storage": "N/A",
+        "SAM": "N/A",
+        "Central Access Policy Staging": "N/A"
+    },
+    "Policy Change": {
+        "Audit Policy Change": "N/A",
+        "Authentication Policy Change": "N/A",
+        "Authorization Policy Change": "N/A",
+        "Filtering Platform Policy Change": "N/A",
+        "MPSSVC Rule-Level Policy Change": "N/A",
+        "Other Policy Change Events": "N/A"
+    },
+    "Privilege Use": {
+        "Non Sensitive Privilege Use": "N/A",
+        "Other Privilege Use Events": "N/A",
+        "Sensitive Privilege Use": "N/A"
+    },
+    "System": {
+        "IPsec Driver": "N/A",
+        "Other System Events": "N/A",
+        "Security State Change": "N/A",
+        "Security System Extension": "N/A",
+        "System Integrity": "N/A"
+    }
+}

@@ -1,0 +1,36 @@
+<Sysmon schemaversion="4.30">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
+      <ImageLoad onmatch="include">        <!-- Credit https://redhead0ntherun.medium.com/detecting-net-c-injection-execute-assembly-1894dbb04ff7-->
+          <Rule groupRelation="and">
+            <OriginalFileName name="technique_id=T1055,technique_name=Process Injection" condition="is">clr.dll</OriginalFileName>
+            <Image condition="excludes">C:\Windows\Microsoft.NET\</Image>
+          </Rule>
+          <Rule groupRelation="and">
+            <OriginalFileName name="technique_id=T1055,technique_name=Process Injection" condition="is">clrjit.dll</OriginalFileName>
+            <Image condition="excludes">C:\Windows\Microsoft.NET\</Image>
+          </Rule>
+          <Rule groupRelation="and">
+            <OriginalFileName name="technique_id=T1055,technique_name=Process Injection" condition="is">mscoreei.dll</OriginalFileName>
+            <Image condition="excludes">C:\Windows\Microsoft.NET\</Image>
+          </Rule>
+          <Rule groupRelation="and">
+            <OriginalFileName name="technique_id=T1055,technique_name=Process Injection" condition="is">mscoree.dll</OriginalFileName>
+            <Image condition="excludes">C:\Windows\Microsoft.NET\</Image>
+          </Rule>
+          <Rule groupRelation="and">
+            <OriginalFileName name="technique_id=T1055,technique_name=Process Injection" condition="is">mscoreeis.dll</OriginalFileName>
+            <Image condition="excludes">C:\Windows\Microsoft.NET\</Image>
+          </Rule>
+          <Rule groupRelation="and">
+            <OriginalFileName name="technique_id=T1055,technique_name=Process Injection" condition="is">mscorlib.dll</OriginalFileName>
+            <Image condition="excludes">C:\Windows\Microsoft.NET\</Image>
+          </Rule>
+          <Rule groupRelation="and">
+            <OriginalFileName name="technique_id=T1055,technique_name=Process Injection" condition="is">mscorlib.ni.dll</OriginalFileName>
+            <Image condition="excludes">C:\Windows\Microsoft.NET\</Image>
+          </Rule>
+      </ImageLoad>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>

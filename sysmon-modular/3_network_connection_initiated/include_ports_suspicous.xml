@@ -1,0 +1,22 @@
+<Sysmon schemaversion="4.30">
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<NetworkConnect onmatch="include">
+				<!--Eventhough DNS is a commmon exfil channel, you should monitor that via some other way, Sysmon is not ideal for that-->
+				<DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">22</DestinationPort>				<!--SSH protocol-->
+				<DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">23</DestinationPort>				<!--Telnet protocol-->
+				<DestinationPort name="technique_id=T1571,technique_name=Non-Standard Port" condition="is">25</DestinationPort>				<!--SMTP mail protocol-->
+				<Rule groupRelation="and">
+					<DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">88</DestinationPort>				<!--Kerberos protocol-->
+					<Image condition="is not">C:\Windows\System32\lsass.exe</Image>															<!--exclude LSASS for Kerberos protocol-->
+        		</Rule>
+				<DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">3389</DestinationPort>				<!--Microsoft:Windows:RDP-->
+				<DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">5800</DestinationPort>				<!--VNC protocol-->
+				<DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">5900</DestinationPort>				<!--VNC protocol-->
+				<DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">5985</DestinationPort>				<!--WinRM protocol-->
+				<DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">5986</DestinationPort>				<!--WinRM protocol-->
+				<DestinationPort name="technique_id=T1087.002,technique_name=Account Discovery: Domain Account" condition="is">9389</DestinationPort>				<!--ADWS port-->
+			</NetworkConnect>
+		</RuleGroup>
+	</EventFiltering>
+</Sysmon>

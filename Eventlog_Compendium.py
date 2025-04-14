@@ -87,7 +87,7 @@ st.markdown(
             The Eventlog Compendium is the go-to resource for understanding Windows Event Logs. 
         </p>
         <p>
-            Whether you're investigating incidents, configuring audit policies, or developing security content this tool provides in-depth details and for each event.
+            Whether you're investigating incidents, configuring audit policies, or developing security content this tool provides in-depth details for each event.
         </p>
     </div>
     """,

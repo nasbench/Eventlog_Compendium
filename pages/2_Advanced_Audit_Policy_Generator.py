@@ -443,6 +443,9 @@ with st.sidebar:
 
                 elif system_type == "Client":
                     updated_policies_json["Detailed Tracking"]["Process Creation"] = "Success, Failure"
+                    updated_policies_json["Account Logon"]["Credential Validation"] = "Success, Failure"
+                    updated_policies_json["Account Management"]["Computer Account Management"] = "Success, Failure"
+                    updated_policies_json["Account Management"]["Other Account Management Events"] = "Success"
                     reasons_dict["Client"] = True
 
                 # Windows Features / Functionalities

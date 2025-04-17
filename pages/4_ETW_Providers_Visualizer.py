@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
-import requests
-from urllib.parse import quote
+import os
 import re
 from sidebar import show_sidebar
 from PIL import Image
@@ -57,9 +56,18 @@ custom_css = """
 """
 st.markdown(custom_css, unsafe_allow_html=True)
 
-st.title("\U0001F4CA ETW Provider Visualizer")
+st.title("📊 ETW Provider Visualizer")
 
-GITHUB_API_URL = "https://api.github.com/repos/nasbench/EVTX-ETW-Resources/contents/ETWEventsList/CSV"
+BASE_PATH = "data/EVTX-ETW-Resources/ETWEventsList/CSV"
+
+def get_folders(path):
+    return sorted([d for d in os.listdir(path) if os.path.isdir(os.path.join(path, d))])
+
+def get_csvs(path):
+    return sorted([f for f in os.listdir(path) if f.endswith(".csv")])
+
+def highlight_message(message):
+    return re.sub(r"\{(.*?)\}", r'<span class="highlight">{\1}</span>', str(message))
 
 for key in ["windows_version", "release_version", "build_number", "csv_file"]:
     st.session_state.setdefault(key, None)
@@ -70,76 +78,69 @@ for param in ["windows_version", "release_version", "build_number", "csv_file"]:
         st.session_state.pop("csv_loaded", None)
         st.session_state.pop("df", None)
 
-@st.cache_data
-def fetch_directory_contents(path):
-    url = f"{GITHUB_API_URL}/{path}"
-    response = requests.get(url)
-    if response.status_code == 200:
-        return response.json()
-    else:
-        st.error(f"Failed to fetch data from GitHub API: {response.status_code}")
-        return []
-
-def extract_folders(contents):
-    return [item['name'] for item in contents if item['type'] == 'dir']
-
-def extract_csv_files(contents):
-    return [item['name'] for item in contents if item['type'] == 'file' and item['name'].endswith('.csv')]
-
-def highlight_message(message):
-    return re.sub(r"\{(.*?)\}", r'<span class="highlight">{\1}</span>', str(message))
-
-windows_versions = extract_folders(fetch_directory_contents(""))
+windows_versions = get_folders(BASE_PATH)
 selected_version = st.selectbox("Select Windows Version:", windows_versions, key="windows_version")
 
 if selected_version:
     st.session_state["windows_version_prev"] = selected_version
 
-    # Step 2: Select Release Version
-    release_versions = extract_folders(fetch_directory_contents(selected_version))
+    release_path = os.path.join(BASE_PATH, selected_version)
+    release_versions = get_folders(release_path)
     selected_release = st.selectbox("Select Windows Release Version:", release_versions, key="release_version")
 
     if selected_release:
         st.session_state["release_version_prev"] = selected_release
 
-        # Step 3: Select Build Number
-        build_numbers = extract_folders(fetch_directory_contents(f"{selected_version}/{selected_release}"))
-        selected_build = st.selectbox("Select Build Number:", build_numbers, key="build_number")
+        full_release_path = os.path.join(release_path, selected_release)
+        direct_provider_path = os.path.join(full_release_path, "Providers")
 
-        if selected_build:
-            st.session_state["build_number_prev"] = selected_build
+        # Check if Providers folder exists directly under release path (Windows 8 edge case)
+        if os.path.exists(direct_provider_path):
+            provider_path = direct_provider_path
+        else:
+            build_numbers = get_folders(full_release_path)
+            selected_build = st.selectbox("Select Build Number:", build_numbers, key="build_number")
 
-            # Step 4: Select Provider CSV
-            provider_files = extract_csv_files(fetch_directory_contents(f"{selected_version}/{selected_release}/{selected_build}/Providers"))
+            if selected_build:
+                st.session_state["build_number_prev"] = selected_build
+                provider_path = os.path.join(full_release_path, selected_build, "Providers")
+            else:
+                provider_path = None
+
+        # Load CSV from provider_path
+        if provider_path and os.path.exists(provider_path):
+            provider_files = get_csvs(provider_path)
 
             if provider_files:
                 selected_csv = st.selectbox("Select CSV File:", provider_files, key="csv_file")
                 st.session_state["csv_file_prev"] = selected_csv
 
-                # Load CSV Button
-                if st.button("\U0001F4C2 Load CSV File"):
+                if st.button("📂 Load CSV File"):
                     st.session_state.pop("filter_column", None)
                     st.session_state.pop("filter_value", None)
                     st.session_state.pop("sort_column", None)
                     st.session_state.pop("sort_order", None)
 
-                    encoded_csv = quote(selected_csv)
-                    csv_url = f"https://raw.githubusercontent.com/nasbench/EVTX-ETW-Resources/main/ETWEventsList/CSV/{selected_version}/{selected_release}/{selected_build}/Providers/{encoded_csv}"
-
                     try:
-                        df = pd.read_csv(csv_url)
+                        full_csv_path = os.path.join(provider_path, selected_csv)
+                        df = pd.read_csv(full_csv_path)
+
                         if "Message" in df.columns:
                             df["Message"] = df["Message"].apply(lambda x: highlight_message(x))
+
                         st.session_state.df = df
                         st.session_state.csv_loaded = True
-                        st.success(f"\u2705 Loaded Data from {selected_csv}", icon="✅")
+                        st.success(f"✅ Loaded Data from {selected_csv}", icon="✅")
                     except Exception as e:
                         st.error(f"⚠️ Failed to load CSV: {str(e)}")
                         st.session_state.csv_loaded = False
             else:
-                st.warning("No CSV files found in the selected Providers folder.")
+                st.warning("⚠️ No CSV files found in the selected Providers folder.")
+        else:
+            st.warning("⚠️ No Providers folder found in selected path.")
 
-if "csv_loaded" in st.session_state and st.session_state.csv_loaded:
+# --- Display CSV Table ---
+if st.session_state.get("csv_loaded"):
     df = st.session_state.df
 
     col1, col2 = st.columns([0.5, 0.5])

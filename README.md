@@ -8,7 +8,7 @@
   <a href="#"><img alt="Version" src="https://img.shields.io/badge/version-1.0-blue.svg"></a>
   <a href="https://www.apache.org/licenses/LICENSE-2.0"><img alt="License: Apache 2.0" src="https://img.shields.io/badge/license-Apache%202.0-brightgreen.svg"></a>
   <a href="https://www.python.org/"><img alt="Python Version" src="https://img.shields.io/badge/python-3.10+-blue.svg"></a>
-  <a href="https://github.com/nasbench/eventlog-compendium/stargazers"><img alt="GitHub Stars" src="https://img.shields.io/github/stars/nasbench/eventlog-compendium?style=social"></a>
+  <a href="https://github.com/nasbench/eventlog-compendium/stargazers"><img alt="GitHub Stars" src="https://img.shields.io/github/stars/nasbench/eventlog_compendium?style=social"></a>
 </p>
 
 **Eventlog Compendium** is the one-stop shop utility designed to simplify Windows security event log analysis, audit policy generation, and configuration building. It brings together multiple tools into a single interface — tailored for blue teamers, detection engineers, and IT administrators.

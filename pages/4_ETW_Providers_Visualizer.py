@@ -64,101 +64,93 @@ def get_folders(path):
     return sorted([d for d in os.listdir(path) if os.path.isdir(os.path.join(path, d))])
 
 def get_csvs(path):
-    return sorted([f for f in os.listdir(path) if f.endswith(".csv")])
+    return {f.replace(".csv.gz", ""): f
+            for f in os.listdir(path)
+            if f.endswith(".csv.gz")}
 
 def highlight_message(message):
     return re.sub(r"\{(.*?)\}", r'<span class="highlight">{\1}</span>', str(message))
 
-for key in ["windows_version", "release_version", "build_number", "csv_file"]:
-    st.session_state.setdefault(key, None)
-    st.session_state.setdefault(f"{key}_prev", None)
+st.session_state.setdefault("df", None)
+st.session_state.setdefault("csv_loaded", False)
 
-for param in ["windows_version", "release_version", "build_number", "csv_file"]:
-    if st.session_state[param] != st.session_state[f"{param}_prev"]:
-        st.session_state.pop("csv_loaded", None)
-        st.session_state.pop("df", None)
-
+# Windows Version
 windows_versions = get_folders(BASE_PATH)
 selected_version = st.selectbox("Select Windows Version:", windows_versions, key="windows_version")
 
 if selected_version:
-    st.session_state["windows_version_prev"] = selected_version
-
-    release_path = os.path.join(BASE_PATH, selected_version)
-    release_versions = get_folders(release_path)
+    version_path = os.path.join(BASE_PATH, selected_version)
+    # Release Version
+    release_versions = get_folders(version_path)
     selected_release = st.selectbox("Select Windows Release Version:", release_versions, key="release_version")
 
     if selected_release:
-        st.session_state["release_version_prev"] = selected_release
+        release_path = os.path.join(version_path, selected_release)
+        # System Folder
+        system_infos = get_folders(release_path)
+        selected_sys = st.selectbox("Select System Folder:", system_infos, key="system_info")
 
-        full_release_path = os.path.join(release_path, selected_release)
-        direct_provider_path = os.path.join(full_release_path, "Providers")
+        if selected_sys:
+            sys_path = os.path.join(release_path, selected_sys)
+            provider_path = os.path.join(sys_path, "Providers")
 
-        # Check if Providers folder exists directly under release path (Windows 8 edge case)
-        if os.path.exists(direct_provider_path):
-            provider_path = direct_provider_path
-        else:
-            build_numbers = get_folders(full_release_path)
-            selected_build = st.selectbox("Select Build Number:", build_numbers, key="build_number")
+            if os.path.exists(provider_path):
+                provider_files = get_csvs(provider_path)
 
-            if selected_build:
-                st.session_state["build_number_prev"] = selected_build
-                provider_path = os.path.join(full_release_path, selected_build, "Providers")
-            else:
-                provider_path = None
-
-        # Load CSV from provider_path
-        if provider_path and os.path.exists(provider_path):
-            provider_files = get_csvs(provider_path)
-
-            if provider_files:
-                selected_csv = st.selectbox("Select CSV File:", provider_files, key="csv_file")
-                st.session_state["csv_file_prev"] = selected_csv
-
-                if st.button("📂 Load CSV File"):
-                    st.session_state.pop("filter_column", None)
-                    st.session_state.pop("filter_value", None)
-                    st.session_state.pop("sort_column", None)
-                    st.session_state.pop("sort_order", None)
-
-                    try:
-                        full_csv_path = os.path.join(provider_path, selected_csv)
-                        df = pd.read_csv(full_csv_path)
-
-                        if "Message" in df.columns:
-                            df["Message"] = df["Message"].apply(lambda x: highlight_message(x))
-
-                        st.session_state.df = df
-                        st.session_state.csv_loaded = True
-                        st.success(f"✅ Loaded Data from {selected_csv}", icon="✅")
-                    except Exception as e:
-                        st.error(f"⚠️ Failed to load CSV: {str(e)}")
+                if provider_files:
+                    # Clear out old DataFrame when user picks a different CSV
+                    def _clear_df():
+                        st.session_state.df = None
                         st.session_state.csv_loaded = False
-            else:
-                st.warning("⚠️ No CSV files found in the selected Providers folder.")
-        else:
-            st.warning("⚠️ No Providers folder found in selected path.")
 
-# --- Display CSV Table ---
-if st.session_state.get("csv_loaded"):
-    df = st.session_state.df
+                    selected_label = st.selectbox(
+                        "Select CSV File:",
+                        list(provider_files.keys()),
+                        key="csv_file",
+                        on_change=_clear_df
+                    )
+
+                    if st.button("📂 Load CSV File"):
+                        try:
+                            full_csv_path = os.path.join(provider_path, provider_files[selected_label])
+                            df = pd.read_csv(full_csv_path, compression="gzip")
+                            if "Message" in df.columns:
+                                df["Message"] = df["Message"].apply(highlight_message)
+                            st.session_state.df = df
+                            st.session_state.csv_loaded = True
+                            st.success(f"✅ Loaded data from {provider_files[selected_label]}")
+                        except Exception as e:
+                            st.error(f"⚠️ Failed to load CSV: {e}")
+
+                else:
+                    st.warning("⚠️ No .csv.gz files found in the Providers folder.")
+            else:
+                st.warning("⚠️ No Providers folder found in the selected system folder.")
+
+if st.session_state.csv_loaded:
+    df = st.session_state.df.copy()
 
     col1, col2 = st.columns([0.5, 0.5])
-
     with col1:
         st.markdown("### 🔍 Filter Data")
-        column_to_filter = st.selectbox("Select column:", df.columns, key="filter_column")
-        filter_value = st.text_input("Filter value:", key="filter_value")
-        if filter_value:
-            df = df[df[column_to_filter].astype(str).str.contains(filter_value, case=False, na=False)]
-
+        filter_col = st.selectbox("Select column:", df.columns, key="filter_column")
+        filter_val = st.text_input("Filter value:", key="filter_value")
     with col2:
         st.markdown("### 🔽 Sort Data")
-        sort_column = st.selectbox("Sort by:", df.columns, key="sort_column")
-        sort_order = st.radio("Sort Order:", ["Ascending", "Descending"], key="sort_order", horizontal=True)
-        df = df.sort_values(by=sort_column, ascending=(sort_order == "Ascending"))
+        sort_col = st.selectbox("Sort by:", df.columns, key="sort_column")
+        sort_asc = st.radio("Sort Order:", ["Ascending", "Descending"], key="sort_order", horizontal=True)
 
-    st.markdown(f"### 📋 {selected_csv.replace('.csv', '')}")
+    # Apply filter
+    if filter_val:
+        df = df[df[filter_col].astype(str)
+                  .str.contains(filter_val, case=False, na=False)]
+
+    # Apply sort
+    df = df.sort_values(by=sort_col, ascending=(sort_asc == "Ascending"))
+
+    # Render table
+    clean_name = selected_label
+    st.markdown(f"### 📋 {clean_name}")
     table_html = df.to_html(index=False, escape=False)
     table_html = table_html.replace("<th>", '<th style="text-align:center;">')
     st.markdown(table_html, unsafe_allow_html=True)
